@@ -8,11 +8,7 @@ require("dotenv").config();
 const typeDefs = require("./graphql/typeDefs");
 
 // Define resolvers
-const resolvers = {
-    Query: {
-        sayHi: () => "Hello world",
-    },
-};
+const resolvers = require("./graphql/resolvers");
 
 // Define Server
 const server = new ApolloServer({
