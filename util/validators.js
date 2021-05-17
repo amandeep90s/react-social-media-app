@@ -1,3 +1,4 @@
+// Register Form Validation
 module.exports.validateRegisterInput = (
     username,
     email,
@@ -22,6 +23,24 @@ module.exports.validateRegisterInput = (
         errors.password = "Password must not be empty";
     } else if (password !== confirmPassword) {
         errors.confirmPassword = "Passwords must match";
+    }
+
+    return {
+        errors,
+        valid: Object.keys(errors).length < 1,
+    };
+};
+
+// Login Form Validation
+module.exports.validateLoginInput = (username, password) => {
+    const errors = {};
+
+    if (username.trim() === "") {
+        errors.username = "Username must not be empty";
+    }
+
+    if (password.trim() === "") {
+        errors.password = "Password must not be empty";
     }
 
     return {
