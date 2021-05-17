@@ -53,8 +53,5 @@ module.exports = {
                 throw new UserInputError("Post not found");
             }
         },
-        likePost: async (_, { postId }, context) => {
-            //
-        },
     },
 };
