@@ -5,6 +5,7 @@ import moment from "moment";
 import { AuthContext } from "../context/auth";
 import LikeButton from "./LikeButton";
 import DeleteButton from "./DeleteButton";
+import MyPopup from "../util/MyPopup";
 
 const PostCard = ({
     post: { id, body, createdAt, username, likeCount, commentCount, likes },
@@ -17,7 +18,7 @@ const PostCard = ({
                 <Image
                     floated="right"
                     size="mini"
-                    src="https://react.semantic-ui.com/images/avatar/large/molly.png"
+                    src="https://react.semantic-ui.com/images/avatar/large/matthew.png"
                 />
                 <Card.Header>{username}</Card.Header>
                 <Card.Meta as={Link} to={`/posts/${id}`}>
@@ -28,14 +29,16 @@ const PostCard = ({
             <Card.Content extra>
                 <LikeButton post={{ id, likes, likeCount }} user={user} />
 
-                <Button as={Link} to={`/posts/${id}`} labelPosition="right">
-                    <Button color="blue">
-                        <Icon name="comments" style={{ margin: 0 }} />
+                <MyPopup content="Comment on post">
+                    <Button labelPosition="right" as={Link} to={`/posts/${id}`}>
+                        <Button color="blue" basic>
+                            <Icon name="comments" />
+                        </Button>
+                        <Label basic color="blue" pointing="left">
+                            {commentCount}
+                        </Label>
                     </Button>
-                    <Label basic color="blue" pointing="left">
-                        {commentCount}
-                    </Label>
-                </Button>
+                </MyPopup>
 
                 {user && user.username === username && (
                     <DeleteButton postId={id} />

@@ -69,7 +69,7 @@ const SinglePost = (props) => {
                     <Grid.Row>
                         <Grid.Column width={2}>
                             <Image
-                                src="https://react.semantic-ui.com/images/avatar/large/molly.png"
+                                src="https://react.semantic-ui.com/images/avatar/large/matthew.png"
                                 size="small"
                                 float="right"
                             />
@@ -192,7 +192,7 @@ const SinglePost = (props) => {
 };
 
 const SUBMIT_COMMENT_MUTATION = gql`
-    mutation ($postId: String!, $body: String!) {
+    mutation ($postId: ID!, $body: String!) {
         createComment(postId: $postId, body: $body) {
             id
             comments {
