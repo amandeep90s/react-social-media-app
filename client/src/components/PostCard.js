@@ -1,18 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Card, Icon, Label, Image, Button } from "semantic-ui-react";
 import moment from "moment";
+import { AuthContext } from "../context/auth";
+import LikeButton from "./LikeButton";
 
 const PostCard = ({
     post: { id, body, createdAt, username, likeCount, commentCount, likes },
 }) => {
-    const handleLikePost = () => {
-        //
-    };
-
-    const handleCommentOnPost = () => {
-        //
-    };
+    const { user } = useContext(AuthContext);
 
     return (
         <Card fluid>
@@ -29,27 +25,27 @@ const PostCard = ({
                 <Card.Description>{body}</Card.Description>
             </Card.Content>
             <Card.Content extra>
-                <Button as="div" labelPosition="right" onClick={handleLikePost}>
-                    <Button color="teal" basic>
-                        <Icon name="heart" />
-                    </Button>
-                    <Label basic color="teal" pointing="left">
-                        {likeCount}
-                    </Label>
-                </Button>
+                <LikeButton post={{ id, likes, likeCount }} user={user} />
 
-                <Button
-                    as="div"
-                    labelPosition="right"
-                    onClick={handleCommentOnPost}
-                >
+                <Button as={Link} to={`/posts/${id}`} labelPosition="right">
                     <Button color="blue">
-                        <Icon name="comments" />
+                        <Icon name="comments" style={{ margin: 0 }} />
                     </Button>
                     <Label basic color="blue" pointing="left">
                         {commentCount}
                     </Label>
                 </Button>
+
+                {user && user.username === username && (
+                    <Button
+                        as="div"
+                        color="red"
+                        onClick={() => console.log("delete post")}
+                        floated="right"
+                    >
+                        <Icon name="trash" style={{ margin: 0 }} />
+                    </Button>
+                )}
             </Card.Content>
         </Card>
     );
