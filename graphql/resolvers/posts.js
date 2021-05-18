@@ -28,7 +28,7 @@ module.exports = {
         },
     },
     Mutation: {
-        createPost: async (_, { body }, context) => {
+        async createPost(_, { body }, context) {
             const user = checkAuth(context);
 
             if (body.trim() === "") {

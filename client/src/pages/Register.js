@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Button, Form } from "semantic-ui-react";
 import { gql, useMutation } from "@apollo/client";
-import { useForm } from "../util/hook";
+import { useForm } from "../util/hooks";
 import { AuthContext } from "../context/auth";
 
 const Register = (props) => {
