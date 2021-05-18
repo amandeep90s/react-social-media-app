@@ -33,6 +33,9 @@ mongoose
 
 // Server Port
 const port = process.env.PORT || 5000;
-server.listen({ port }).then((result) => {
-    console.log(`server running at ${result.url}`);
-});
+server
+    .listen({ port })
+    .then((result) => {
+        console.log(`server running at ${result.url}`);
+    })
+    .catch((error) => console.error(error));
