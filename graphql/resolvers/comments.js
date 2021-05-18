@@ -31,16 +31,13 @@ module.exports = {
         },
         deleteComment: async (_, { postId, commentId }, context) => {
             const { username } = checkAuth(context);
+
             const post = await Post.findById(postId);
 
             if (post) {
                 const commentIndex = post.comments.findIndex(
                     (c) => c.id === commentId
                 );
-
-                if (commentIndex < 1) {
-                    throw new UserInputError("Comment not found");
-                }
 
                 if (post.comments[commentIndex].username === username) {
                     post.comments.splice(commentIndex, 1);
